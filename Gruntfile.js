@@ -19,14 +19,36 @@ module.exports = function(grunt) {
         }
       }
     },
+    less: {
+      development: {
+        options: {
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files: {
+          // target.css file: source.less file
+          "app/css/style.css": "app/less/style.less"
+        }
+      }
+    },
     watch: {
       jsFiles: {
         files: ['app/**/*.js', 'test.js', 'require.conf.js'],
         tasks: ['shell:mocha-phantomjs']
+      },
+      styles: {
+        // Which files to watch (all .less files recursively in the less directory)
+        files: ['app/**/*.less'],
+        tasks: ['less'],
+        options: {
+          nospawn: true
+        }
       }
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
