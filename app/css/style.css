@@ -1,0 +1,366 @@
+* {
+    outline: 0px;
+}
+body {
+    font-family: Verdana;
+    font-size:12px;
+    margin:0;
+    padding: 0;
+    background: #000;
+    overflow-y: scroll;
+    color: #515254;
+}
+/* FFD505  */
+ .wrap {
+    width: 920px;
+    margin:0 auto;
+    padding: 0 20px;
+}
+/*  box-shadow: 0 5px 5px #987e05;*/
+ form {
+    margin: 0;
+    padding: 0;
+}
+.left {
+    float:left;
+}
+.right {
+    float:right;
+}
+.clear {
+    clear:both;
+    float:none;
+    width:0;
+    height:0;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.clearfix {
+	display: inline-block;
+}
+.hidden {
+    display:none;
+}
+#logo {
+    display: block;
+    width: 247px;
+    height: 120px;
+    float: left;
+    margin: 10px 90px 0 0;
+}
+#header {
+    width: 100%;
+    background: #fff;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    height: 100px;
+    overflow: hidden;
+}
+#header .wrap{
+  background: url(../images/header.png) no-repeat 0 20px;
+}
+#header-top {
+    float: right;
+    margin: 25px 25px 0 0;
+}
+#header-top ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#header-top ul li {
+    float: left;
+    display: inline-block;
+    margin: 0 20px 0 0;
+}
+#header-top ul li.last-child {
+    margin-right: 0;
+}
+#header-top ul li.clear {
+    float: none;
+    clear: both;
+    width: 0;
+    height: 0;
+    margin: 0;
+}
+#header-top ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #515254;
+}
+#header-top ul li a:hover {
+    color: #d23232;
+}
+#header-bottom {
+    text-align: center;
+}
+#content {
+    display: none;
+    margin-top: 100px;
+    background: #fff;
+    padding-bottom: 50px;
+    position: relative;
+}
+
+#spinner{
+
+  position: absolute;
+  width: 920px;
+  height: 100%;
+  background: #fff;
+  z-index: 6000;
+  display: none;
+}
+
+#spinner .content{
+  width: 100px;
+  text-align: center;
+  margin: 20px auto 0;
+}
+.clear-container {
+  width: 920px;
+  min-height: 400px;
+}
+.right-sidebar {
+    width: 220px;
+    float: left;
+    margin: 0 80px 0 0;
+    text-align: left;
+    font-size: 14px;
+}
+.right-sidebar h3 {
+  font-size: 22px;
+}
+.sticky {
+    width: 220px;
+    z-index: 5000;
+}
+.stick {
+    position: fixed;
+    top: 10px;
+}
+.directTop{
+  display: block;
+  color: #000;
+  text-decoration: none;
+  margin: 20px 0 0 0;
+}
+.project-content, .sidebar-content {
+    width: 620px;
+    float: right;
+}
+.project-text{
+  margin: 20px 0 10px 0;
+  font-size: 14px;
+}
+.project-text hr{
+  margin: 10px 0;
+  border-style: solid;
+  border-color: #ddd;
+}
+.bold {
+  display: block;
+  margin: 0 0 2px 0;
+  font-weight: bold;
+}
+
+#project-videos {
+    width: 620px;
+    height: 400px;
+    margin-bottom: 20px;
+}
+.photogallery img {
+    border: 1px solid #ddd;
+    width: 620px;
+    max-width: 630px;
+    margin: 0 0 20px 0;
+}
+.main-project-photo {
+    overflow: hidden;
+    height: 400px;
+    padding: 0;
+    width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+}
+.main-project-photo img {
+    width: 920px;
+}
+#footer {
+    border-top: 1px solid #ebebeb;
+    color: #4d4d4d;
+    width: 100%;
+    overflow: hidden;
+    padding: 25px 0;
+    background: #000;
+}
+.types {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+.types li {
+    float: left;
+}
+
+
+.portfolio-filter{
+  z-index: 5000;
+  background: #fff;
+  width: 880px;
+  margin: 0 0 5px 40px;
+  margin-top: -40px;
+  position: fixed;
+}
+
+.portfolio-filter ul{
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+}
+
+.portfolio-filter ul li{
+  display: inline-block;
+  float: left;
+  margin-right: 20px;
+}
+
+.portfolio-filter ul li a{
+  color: #000;
+  text-decoration: none;
+}
+
+.portfolio-filter ul li a.active, .portfolio-filter ul li a:hover{
+  color: #d23232;
+}
+
+#project-container{
+	width: 920px;
+}
+.box{
+	/*float: left;*/
+	margin: 5px 3px;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+.box a{
+	position: relative;
+	display: block;
+	color: #000;
+	text-decoration: none;
+}
+.box a .box-hidden-info{
+	opacity: 0;
+	position: absolute;
+	background: url(../images/pattern.png) rgba(255,255,255,0.7);
+	top: 0;
+	left: 0;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+}
+
+.box a .box-hidden-info .info{
+	margin: 20px;
+	padding: 20px;
+	background: rgba(255,255,255,0.8);
+	display: inline-block;
+}
+
+.box a .box-hidden-info h5{
+	font-size: 18px;
+	padding: 0;
+	margin: 0;
+}
+
+.box a:hover .box-hidden-info {
+	opacity: 1;
+}
+
+.box-1{
+	width: 286px;
+	height: 412px;
+}
+
+.box-1 .children, .box-1 a {
+	width: 286px;
+	height: 412px;
+}
+
+.box-2{
+	width: 286px;
+	height: 200px;
+}
+
+.box-2 .children, .box-2 a {
+	width: 286px;
+	height: 200px;
+}
+
+.box-3{
+	width: 580px;
+	height: 200px;
+}
+
+.box-3 .children, .box-3 a {
+	width: 580px;
+	height: 200px;
+}
+
+/*--------------------------*/
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:      -o-transform, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}
+

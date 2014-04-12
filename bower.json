@@ -1,0 +1,36 @@
+{
+  "name": "conductor",
+  "version": "0.0.0",
+  "authors": [
+    "lybo <lyberis.g@gmail.com>"
+  ],
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "es5-shim": "~2.1.0",
+    "history.js": "~1.8.0",
+    "jquery": "~2.0.3",
+    "eventie": "desandro/eventie#>=1.0.3",
+    "require-css": "~0.0.8",
+    "require-less": "~0.0.8",
+    "requirejs-text": "~2.0.10",
+    "requirejs": "~2.1.9",
+    "eventEmitter": "4.x",
+    "knockout-require-templates": "~1.0.0",
+    "less.js": "~1.5.0"
+  }
+}
