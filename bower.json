@@ -5,33 +5,16 @@
     "lybo <lyberis.g@gmail.com>"
   ],
   "moduleType": [
-    "amd",
-    "es6",
-    "globals",
-    "node",
-    "yui"
+    "amd"
   ],
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "app/bower",
-    "test",
-    "tests"
-  ],
   "dependencies": {
     "es5-shim": "~2.1.0",
-    "eventEmitter": "4.x",
-    "eventie": "desandro/eventie#>=1.0.3",
     "history.js": "~1.8.0",
     "jquery": "~2.0.3",
     "knockout-require-templates": "~1.0.0",
-    "less.js": "~1.5.0",
-    "require-css": "~0.0.8",
-    "require-less": "~0.0.8",
-    "requirejs-text": "~2.0.10"
-    "PubSubJS": "~1.4.2"
+    "requirejs-text": "~2.0.10",
+    "pubsub-js": "~1.4.2"
   },
   "homepage": "https://github.com/lybo/conductor"
 }
