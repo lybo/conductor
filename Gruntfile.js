@@ -37,10 +37,50 @@ module.exports = function(grunt) {
         }
       }
     },
+    'string-replace': {
+      dist: {
+        files: {
+          'app/test/test.js': 'app/test/test.js',
+          'index.html': 'index.html'
+        },
+        options: {
+          replacements: [{
+            pattern: /\/\*files\*\/(.*?)\/\*files\*\//g,
+            replacement: function () {
+              var files = grunt.file.expand({cwd:  'app/test/'}, '*');
+              var testFiles = [];
+              files.forEach(function (file) {
+                if (file !== 'test.js') {
+                  testFiles.push("'test/" + file.replace('.js', '') + "'");
+                }
+              });
+
+              return "/*files*/" + testFiles.join(',') + "/*files*/";
+            }
+          },{
+            pattern: /\<\!-- conductor: images -->(.*?)<\!-- \/conductor -->/g,
+            replacement: function () {
+              var images = grunt.file.expand({cwd:  'app/images/'}, '*');
+
+              var imagesMotified = [];
+              images.forEach(function (file) {
+                  imagesMotified.push("'app/images/" + file + "'");
+              });
+
+              return "<!-- conductor: images --><script> window.preLoadedImages = [" + imagesMotified.join(',') + "]; </script><!-- /conductor -->";
+            }
+          }]
+        }
+      }
+    },
     watch: {
       jsFiles: {
-        files: ['app/**/*.js', 'test.js', 'require.conf.js', 'index.html'],
-        tasks: ['shell:mocha-phantomjs']
+        files: ['app/**/*.js', 'require.conf.js', 'index.html'],
+        tasks: ['string-replace', 'shell:mocha-phantomjs']
+      },
+      images: {
+        files: ['app/images/*'],
+        tasks: ['string-replace']
       },
       styles: {
         // Which files to watch (all .less files recursively in the less directory)
@@ -57,6 +97,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.registerTask('develop', ['shell:mocha-phantomjs', 'watch']);
+  grunt.loadNpmTasks('grunt-string-replace');
+  grunt.registerTask('develop', ['string-replace', 'shell:mocha-phantomjs', 'watch']);
   grunt.registerTask('built', ['requirejs']);
 };

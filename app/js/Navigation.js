@@ -1,9 +1,12 @@
 /* global define */
 define([
-	'js/Router'
+    'js/Router',
+	'template!view/home.html'
 ], function (router) {
 	function Navigation(config) {
 		var self = this;
+
+
 
 		self.hash = '#';
 		self.viewModel = config.viewModel || {};
@@ -14,6 +17,13 @@ define([
             hash: pager.Href.hash,
             mv: viewModel
         });*/
+
+        router.setPreMiddleware(function (router) {
+
+            console.info('-------');
+            console.info(router, router.currentPath, router.currentRoute.path);
+
+        });
 
 
         var initPortfolio = function (ctx) {
@@ -49,28 +59,25 @@ define([
             function (ctx) {
                 console.log(ctx);
                 alert('2');
-                router.navigate("/about/1/2/3", "State 1", {state:1});
+                router.navigate('/about/1/2/3');
             }
         ]);
 
-
+        router.on('/about/:lala', function (ctx) {
+            alert(ctx.params.lala);
+        });
 
         //#!/about/?lala=lolo/dfgdfg/dfgdfg
         router.on('/about/:storyId/:skataIs/:toualetaId',[
             lala,
             function (ctx) {
+                alert('moveup');
                 router.moveUp();
                 //console.log(ctx.params);
                 //router.convertToParams(ctx.params.storyId);
                 //alert(router.get.lala);
             }
         ]);
-
-
-
-        router.on('/about/:lala', function (ctx) {
-            alert(ctx.params.lala);
-        });
 
         router.on('/conductor', function (ctx) {
             //router.navigate("/", "home", {state:1});
@@ -99,6 +106,8 @@ define([
                 '/lala': initPortfolio
             }
         });
+
+
 
         router.start();
 

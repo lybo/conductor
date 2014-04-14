@@ -14,6 +14,10 @@ define([
 	}
 
 	Router.prototype = {
+		setPreMiddleware : function (preMiddleware) {
+			var self = this;
+			self.preMiddleware = preMiddleware || null;
+		},
 		clearPath: function (path) {
 			return path.replace(this.hash, '');
 		},
@@ -32,6 +36,9 @@ define([
 			});
 
 			if (currentRoute) {
+				if (self.preMiddleware) {
+					self.preMiddleware(self);
+				}
 				currentRoute.handler();
 			}
 		},
@@ -53,20 +60,27 @@ define([
 			State = History.getState();
 			self.currentPath = self.sanitize(State.hash);
 
-			console.info(self.currentPath, ' || ' ,State.hash, State);
+			//console.info(self.currentPath, ' || ' ,State.hash, State);
 			self.evaluateCurrentLocation();
 		},
-		sanitize: function (hash) {
+		sanitize: function (hash, addHash) {
 			var self = this,
-				hashEndString = 0;
+				hashEndString = 0,
+				hasHash = false;
 
 
 			hashEndString = hash.indexOf('?&_suid=');
-			hashEndString = hashEndString !== -1 ? hashEndString - 1 : hash.length;
+			hashEndString = hashEndString !== -1 ? hashEndString : hash.length;
 
 			hash = hash.substr(0, hashEndString);
 			hash = hash.replace(/\/$/, "");
 			hash = hash ? hash : '/';
+
+
+			hasHash  = hash.indexOf('#/') === 0;
+			if (addHash) {
+				hash = hasHash ? hash : '#' + hash;
+			}
 
 			return hash;
 		},
@@ -92,11 +106,15 @@ define([
 				newPath = newPath.join('/');
 			}
 
+			//
+
 			if (!self.isValid(newPath)) {
+				console.log(newPath);
+				self.currentPath = newPath;
 				self.moveUp(newPath);
 			} else {
-				console.info('navigate: ', '/' + newPath);
-				self.navigate('/' + newPath, 'redirect');
+				console.log(newPath);
+				self.navigate(newPath, 'redirect');
 			}
 		},
 		back: function (path) {
@@ -104,13 +122,17 @@ define([
 		},
 		navigate: function (path, title, data) {
 			var self = this,
-				sanitizedPath = self.sanitize(path);
+				sanitizedPath = self.sanitize(path, true);
 			data = data || null;
 			title = title || null;
 
+
+
+			console.log('#' + self.currentPath, sanitizedPath);
 			if ('#' + self.currentPath !== sanitizedPath) {
-				History.pushState(data, title, path);
+				History.pushState(data, title, sanitizedPath);
 			}
+
 		},
 		isValid: function (path) {
 			var self = this,
