@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
-  var baseUrl = 'http://localhost/fgdfgdfconductor/';
-  //var baseUrl = 'http://localhost/dfgdfgdfgdf~georgioslymperis/conductor/';
+  var baseUrl = 'http://localhost/conductor/';
+  //var baseUrl = 'http://localhost/~georgioslymperis/conductor/';
 
 
   grunt.initConfig({
@@ -14,11 +14,21 @@ module.exports = function(grunt) {
         }
       }
     },
+    requirejs: {
+      compile: {
+        options: {
+          baseUrl: "app",
+          mainConfigFile: "require.conf.js",
+          include: "./app.js",
+          out: "app/app.min.js"
+        }
+      }
+    },
     less: {
       development: {
         options: {
-          compress: false,
-          yuicompress: fals,
+          compress: true,
+          yuicompress: true,
           optimization: 2
         },
         files: {
@@ -46,6 +56,18 @@ module.exports = function(grunt) {
               });
 
               return "/*files*/" + testFiles.join(',') + "/*files*/";
+            }
+          },{
+            pattern: /\<\!-- conductor: images -->(.*?)<\!-- \/conductor -->/g,
+            replacement: function () {
+              var images = grunt.file.expand({cwd:  'app/images/'}, '*');
+
+              var imagesMotified = [];
+              images.forEach(function (file) {
+                  imagesMotified.push("'app/images/" + file + "'");
+              });
+
+              return "<!-- conductor: images --><script> window.preLoadedImages = [" + imagesMotified.join(',') + "]; </script><!-- /conductor -->";
             }
           }]
         }
