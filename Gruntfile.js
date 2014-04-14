@@ -1,8 +1,13 @@
 module.exports = function(grunt) {
+
+  //var baseUrl = 'http://localhost/conductor/';
+  var baseUrl = 'http://localhost/~georgioslymperis/conductor/';
+  
+
   grunt.initConfig({
     shell: {
       'mocha-phantomjs': {
-        command: 'mocha-phantomjs -R dot http://localhost/conductor/testrunner.html',
+        command: 'mocha-phantomjs -R dot ' + baseUrl + 'testrunner.html',
         options: {
           stdout: true,
           stderr: true
