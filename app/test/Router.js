@@ -14,6 +14,25 @@ define([
 
 			});
 		});
+
+		describe('#convertToParams', function(){
+			it('should return true from the parameter lala which is based on the url "?lala=true&lili=false"', function(){
+				
+				var params = router.convertToParams('?lala=true&lili=false');
+
+				chai.assert.equal(params.lala, 'true');
+
+			});
+		});
+
+		describe('#convertToParams', function(){
+			it('should return undefined from the parameter lala which is based on the wrong url "lala=true&lili=false"', function(){
+				
+				var params = router.convertToParams('lala=true?lili=false');
+				
+				chai.assert.equal(typeof params.lala, 'undefined');
+			});
+		});
 	});
 
 });
