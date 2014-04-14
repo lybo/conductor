@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
-  var baseUrl = 'http://localhostgyhfgh/conductor/';
-  //var baseUrl = 'http://localhost/fghfghfghf~georgioslymperis/conductor/';
+  var baseUrl = 'http://localhost/conductor/';
+  //var baseUrl = 'http://localhost/~georgioslymperis/conductor/';
 
 
   grunt.initConfig({
@@ -57,7 +57,20 @@ module.exports = function(grunt) {
 
               return "/*files*/" + testFiles.join(',') + "/*files*/";
             }
-          }
+          },{
+            pattern: /\<\!-- conductor: images -->(.*?)<\!-- \/conductor -->/g,
+            replacement: function () {
+              var images = grunt.file.expand({cwd:  'app/images/'}, '*');
+
+              var imagesMotified = [];
+              images.forEach(function (file) {
+                  imagesMotified.push("'app/images/" + file + "'");
+              });
+
+              return "<!-- conductor: images --><script> window.preLoadedImages = [" + imagesMotified.join(',') + "]; </script><!-- /conductor -->";
+            }
+          }]
+        }
       }
     },
     watch: {
