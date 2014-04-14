@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
-  //choose the right url
-  //var baseUrl = 'http://local fghdfghgdfhdhost/conductor/';
-  var baseUrl = 'http://localhosth fgdgfhfgh dfgh gfdh/~georgioslymperis/conductor/';
-  
+
+  var baseUrl = 'http://localhost/conductor/';
+  //var baseUrl = 'http://localhost/~georgioslymperis/conductor/';
+
 
   grunt.initConfig({
     shell: {
