@@ -2,6 +2,7 @@ define([
   // FILE(S) BEING TESTED
   '../js/Router'
 ], function (router) {
+	var assert = chai.assert;
 	describe('Router', function () {
 		describe('#isValid', function () {
 			it('should return true when the route is not valid (doesn\'t exist)', function () {
@@ -9,8 +10,8 @@ define([
 
 				});
 
-				chai.assert.equal(true, router.isValid('/lala'));
-				chai.assert.equal(false, router.isValid('/lala2'));
+				assert.equal(true, router.isValid('/lala'));
+				assert.equal(false, router.isValid('/lala2'));
 
 			});
 		});
@@ -20,7 +21,7 @@ define([
 
 				var params = router.convertToParams('?lala=true&lili=false');
 
-				chai.assert.equal(params.lala, 'true');
+				assert.equal(params.lala, 'true');
 
 			});
 		});
@@ -30,7 +31,7 @@ define([
 
 				var params = router.convertToParams('lala=true?lili=false');
 
-				chai.assert.equal(typeof params.lala, 'undefined');
+				assert.equal(typeof params.lala, 'undefined');
 			});
 		});
 
@@ -38,9 +39,9 @@ define([
 			it('should return without ?&_suid=...', function () {
 
 
-				chai.assert.equal('/test', router.sanitize('/test?&_suid=6564645646'));
+				assert.equal('/test', router.sanitize('/test?&_suid=6564645646'));
 
-				chai.assert.equal('#/test', router.sanitize('/test?&_suid=6564645646', false));
+				assert.equal('#/test', router.sanitize('/test?&_suid=6564645646', false));
 
 			});
 		});
