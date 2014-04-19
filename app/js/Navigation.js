@@ -1,17 +1,16 @@
 /* global define */
 define([
+    'knockout',
     'js/Router',
+    'pubsub',
+    'template!view/contact.html',
 	'template!view/home.html'
-], function (router) {
+], function (ko, router, pubsub) {
 	function Navigation(config) {
 		var self = this;
 
-
-
 		self.hash = '#';
 		self.viewModel = config.viewModel || {};
-
-
 
         /*var router = new Router({
             hash: pager.Href.hash,
@@ -19,10 +18,8 @@ define([
         });*/
 
         router.setPreMiddleware(function (router) {
-
             console.info('-------');
             console.info(router, router.currentPath, router.currentRoute.path);
-
         });
 
 
@@ -54,14 +51,7 @@ define([
             alert(router.get.order);
             console.log(portfolioId, router.get.order);
         });
-        router.on('/contact', [
-            lala,
-            function (ctx) {
-                console.log(ctx);
-                alert('2');
-                router.navigate('/about/1/2/3');
-            }
-        ]);
+
 
         router.on('/about/:lala', function (ctx) {
             alert(ctx.params.lala);
@@ -79,9 +69,7 @@ define([
             }
         ]);
 
-        router.on('/conductor', function (ctx) {
-            //router.navigate("/", "home", {state:1});
-        });
+
 
 //https://github.com/visionmedia/express/blob/master/examples/route-map/index.js
         router.map({
@@ -109,7 +97,7 @@ define([
 
 
 
-        router.start();
+
 
 
 	}

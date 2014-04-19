@@ -6,18 +6,15 @@ requirejs([
     'js/Navigation',
     'js/Router',
     'js/Application',
+    'pubsub',
+    'controllers/section',
     'js/ko.bindingHandlers',
-    'es5Shim',
-    //'less!../antoniaskaraki.com/css/style.less',
-
-], function ($, ko, Navigation, router, Application) {
+    'es5Shim'
+], function ($, ko, Navigation, router, Application, pubsub) {
     'use strict';
-
 
     $(document).ready(function () {
 
-
-        var viewModel = new Application();
 
         $('a[href]').click(function (e) {
             var $el = $(this),
@@ -38,18 +35,7 @@ requirejs([
             return false;
         });
 
-
-        var navigation = new Navigation({
-            hash: '#',
-            viewModel: viewModel
-        });
-
-        $.extend(viewModel, navigation);
-
-
-        ko.applyBindings(viewModel);
-
-        $('#content').fadeIn(500);
+        router.start();
 
     });
 

@@ -9,7 +9,8 @@ define([
 
 	function Application() {
 		var self = this;
-
+		self.section = ko.observable('');
+		self.sectionData = {};
 
 	}
 

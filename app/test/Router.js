@@ -41,7 +41,7 @@ define([
 
 				assert.equal('/test', router.sanitize('/test?&_suid=6564645646'));
 
-				assert.equal('#/test', router.sanitize('/test?&_suid=6564645646', false));
+				assert.equal('#/test', router.sanitize('/test?&_suid=6564645646', true));
 
 			});
 		});

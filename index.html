@@ -14,7 +14,8 @@
 				<ul>
 					<li><a href="/about/?lala=lolo">about</a></li>
 					<li><a href="/about/?lala=lolo/2/32">work</a></li>
-					<li class="last-child"><a href="/contact">contact</a></li>
+					<li><a href="/contact">contact</a></li>
+					<li class="last-child"><a href="/contact/test">contact</a></li>
 					<li class="clear"></li>
 				</ul>
 			</div>
@@ -22,6 +23,12 @@
 
 		</div>
 	</div>
+
+
+	<div id="section" data-bind="template: {if: VM, name: section, data: VM}">
+		loading....
+	</div>
+
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/history.js/1.8/native.history.min.js"></script>
 	<script type="text/javascript" src="app/bower/requirejs/require.js"></script>
