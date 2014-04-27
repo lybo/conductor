@@ -3,22 +3,21 @@
 requirejs([
     'jquery',
     'knockout',
-    'js/Navigation',
-    'js/Router',
-    'js/Application',
+    'util/Router',
+    'util/features',
     'pubsub',
-    'controllers/section',
-    'js/ko.bindingHandlers',
-    'es5Shim'
-], function ($, ko, Navigation, router, Application, pubsub) {
+    'es5Shim',
+    /* conductor: features */'controller/footer','controller/header','controller/section'/* /conductor */
+], function ($, ko, router, features, pubsub) {
     'use strict';
 
     $(document).ready(function () {
 
 
-        $('a[href]').click(function (e) {
+        $('body').on('click', 'a[href]', function (e) {
             var $el = $(this),
-                href = $el.attr('href');
+                href = $el.attr('href'),
+                currentRoot = [];
 
             e.stopPropagation();
             e.preventDefault();
@@ -30,12 +29,32 @@ requirejs([
                href = '#' + href;
             }
 
-            router.navigate(href);
+            if (href) {
+                currentRoot = href.split('/');
+                currentRoot = currentRoot[1] ? '/' + currentRoot[1] : '';
+            }
 
+			//pubsub.publish('navigation.change', href.substr(1));
+            router.navigate(href);
+			
             return false;
         });
 
-        router.start();
+        router.setPreMiddleware(function (router) {
+			
+			pubsub.publish('navigation.change', router.currentPath);
+            //console.info(router, router.currentPath, router.currentRoute.path);
+        });
+		
+		router.setNoRouteHandler(function () {
+			//alert('no page');
+			pubsub.publish('navigation:error', 'no content');
+		});
+
+        features();
+        //runFeatures();
+        router.start(10);
+
 
     });
 

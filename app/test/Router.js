@@ -1,6 +1,6 @@
 define([
   // FILE(S) BEING TESTED
-  '../js/Router'
+  '../util/Router'
 ], function (router) {
 	var assert = chai.assert;
 	describe('Router', function () {

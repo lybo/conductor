@@ -1,7 +1,0 @@
-<div class="info">
-	<h5 data-bind="text: name"></h5>
-	<ul class="types clearfix" data-bind="foreach: { data: types, afterRender: $root.tooltip }">
-		<li><img data-bind="attr: { src: $root.types[name].path, title: $root.types[name].tooltip }" class="tipsy"></li>
-	</ul>
-	<span class="bold">Κατηγορία: </span><span data-bind="text: category_el"></span>
-</div>
