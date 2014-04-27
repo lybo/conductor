@@ -1,0 +1,6 @@
+<li><a href="#" data-bind="attr: {href: href, title: title}, text: title, css: { selected: isSelected }"></a>
+<!-- ko if: sub().length > 0 -->
+<ul data-bind="template: { name: 'menuItem', foreach: sub}">
+	<li><a href="#" data-bind="attr: {href: href, title: title}, text: title, css: { selected: isSelected }"></a></li>
+</ul>
+<!-- /ko -->
